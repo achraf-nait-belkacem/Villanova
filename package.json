@@ -1,0 +1,10 @@
+{
+  "name": "villanova",
+  "version": "1.0.0",
+  "scripts": {
+    "sass": "sass --watch scss/main.scss css/main.css --style expanded"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}
