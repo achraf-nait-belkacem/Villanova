@@ -11,11 +11,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   </head>
   <body>
 
-    <h1 class="sr-only" id="page-title">Détails de l'événement</h1>
+    <h1 class="sr-only">Détails de l'événement</h1>
 
     <header class="navbar" role="banner">
       <a class="navbar__logo" href="index.html" aria-label="villa.nova — retour à l'accueil">
@@ -24,18 +23,10 @@
       </a>
       <nav class="navbar__nav" aria-label="Navigation principale">
         <ul class="nav-list" role="list">
-          <li><a class="nav-link nav-link--active" href="index.html" aria-current="page">Discover</a></li>
+          <li><a class="nav-link" href="index.html">Discover</a></li>
         </ul>
       </nav>
     </header>
-
-    <div class="ticker" aria-label="Mises à jour en direct" role="marquee">
-      <div class="ticker__track">
-        <div class="ticker__content">
-          <!-- filled by JS -->
-        </div>
-      </div>
-    </div>
 
     <div class="detail-topbar">
       <a class="detail-topbar__back" href="index.html">← Back to events</a>
@@ -43,89 +34,17 @@
 
     <main id="main-content" class="detail" aria-labelledby="event-title">
 
-      <!-- Mobile ticket — filled by JS -->
-      <div class="mobile-ticket" aria-hidden="true">
-        <div class="mobile-ticket__header">
-          <span>— TICKET —</span>
-        </div>
-        <div class="mobile-ticket__title">
-          <span class="subtitle"></span>
-        </div>
-        <div class="mobile-ticket__meta">
-          <div>
-            <span class="meta-label">DATE</span>
-            <span class="meta-value"></span>
-          </div>
-          <div>
-            <span class="meta-label">HEURE</span>
-            <span class="meta-value"></span>
-          </div>
-          <div>
-            <span class="meta-label">ENTRÉE</span>
-            <span class="meta-value">Gratuite</span>
-          </div>
-        </div>
-      </div>
+      <img id="event-image" class="detail__hero" src="" alt="" />
 
-      <!-- Mobile tabs -->
-      <nav class="detail-tabs" aria-label="Sections de l'événement" role="tablist">
-        <button class="detail-tab detail-tab--active" role="tab" aria-selected="true"
-                aria-controls="panel-about" id="tab-about">ABOUT</button>
-        <button class="detail-tab" role="tab" aria-selected="false"
-                aria-controls="panel-venue" id="tab-venue">VENUE</button>
-      </nav>
-
-      <div class="detail__grid">
-
-        <!-- LEFT: Ticket card — filled by JS -->
-        <div class="detail__col detail__col--ticket">
-          <div class="ticket">
-            <span class="ticket__label">— VILLA.NOVA TICKET —</span>
-            <h2 class="ticket__title" id="event-title"></h2>
-            <p class="ticket__category"></p>
-            <dl class="ticket__meta"></dl>
-            <p class="ticket__price"></p>
-          </div>
-        </div>
-
-        <!-- MIDDLE: About + Lineup — filled by JS -->
-        <div class="detail__col detail__col--main">
-
-          <div class="detail__section" id="panel-about" role="tabpanel" aria-labelledby="tab-about">
-            <span class="detail__section-label">— À PROPOS —</span>
-            <p class="detail__text"></p>
-          </div>
-
-          <div class="detail__section">
-            <span class="detail__section-label">— PROGRAMME —</span>
-            <ul class="lineup" aria-label="Programme de la soirée"></ul>
-          </div>
-
-        </div>
-
-        <!-- RIGHT: Venue — filled by JS -->
-        <div class="detail__col detail__col--sidebar">
-
-          <div class="detail__section" id="panel-venue" role="tabpanel" aria-labelledby="tab-venue" hidden>
-            <div class="venue-map" aria-label="Carte du lieu"></div>
-          </div>
-
-        </div>
-
+      <div class="detail__body">
+        <h2 class="detail__title" id="event-title"></h2>
+        <p class="detail__lieu" id="event-lieu"></p>
+        <p class="detail__date" id="event-date"></p>
+        <p class="detail__description" id="event-description"></p>
       </div>
 
     </main>
 
-    <nav class="bottom-nav" aria-label="Navigation mobile">
-      <a class="bottom-nav__item bottom-nav__item--active" href="index.html">
-        <svg class="bottom-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-        </svg>
-        <span class="bottom-nav__label">Discover</span>
-      </a>
-    </nav>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/detail.js"></script>
   </body>
 </html>

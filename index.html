@@ -28,43 +28,11 @@
       </nav>
     </header>
 
-    <div class="ticker" aria-label="Mises à jour en direct" role="marquee">
-      <div class="ticker__track">
-        <div class="ticker__content">
-          <!-- filled by JS -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile only: current day hero — filled by JS -->
-    <section class="date-hero" aria-label="Aperçu du jour sélectionné">
-      <div class="date-hero__left">
-        <span class="date-hero__day"></span>
-        <span class="date-hero__number"></span>
-        <span class="date-hero__info"></span>
-      </div>
-      <div class="date-hero__right">
-        <span class="date-hero__label"></span>
-        <span class="date-hero__count"></span>
-        <span class="date-hero__sub"></span>
-      </div>
-    </section>
-
-    <!-- Week strip — filled by JS -->
-    <section class="week-strip" aria-label="Sélecteur de jour">
-      <div class="week-strip__days"></div>
-    </section>
-
     <main class="agenda" id="main-content">
 
-      <section class="agenda__content" aria-labelledby="agenda-date-heading">
-        <div class="agenda__header">
-          <h2 class="agenda__date" id="agenda-date-heading"></h2>
-          <span class="agenda__hint" aria-hidden="true"></span>
-        </div>
-
-        <!-- Event list — filled by JS -->
-        <ul class="event-list" id="event-list" aria-label="Événements du jour" aria-live="polite" aria-atomic="false">
+      <section class="agenda__content" aria-labelledby="agenda-heading">
+        <h2 class="agenda__title" id="agenda-heading">Événements</h2>
+        <ul class="event-list" id="event-list" aria-label="Liste des événements" aria-live="polite">
         </ul>
       </section>
 
@@ -74,14 +42,6 @@
         <div class="filter-group filter-group--city">
           <h3 class="filter-group__label">VILLE</h3>
           <div class="filter-group__pills" role="group" aria-label="Filtrer par ville">
-            <!-- filled by JS -->
-          </div>
-        </div>
-
-        <div class="filter-group filter-group--when">
-          <h3 class="filter-group__label">QUAND</h3>
-          <div class="filter-group__pills" role="group" aria-label="Filtrer par date">
-            <!-- filled by JS -->
           </div>
         </div>
       </aside>
@@ -91,19 +51,10 @@
     <footer class="site-footer">
       <p class="site-footer__copy">
         © 2025 villa.nova ·
-        <a href="#">Mentions légales</a> ·
-        <a href="#">Accessibilité</a>
+        <a href="#">Achraf nait belkacem</a> ·
+        <a href="#">Accessibilité AA</a>
       </p>
     </footer>
-
-    <nav class="bottom-nav" aria-label="Navigation mobile">
-      <a class="bottom-nav__item bottom-nav__item--active" href="index.html" aria-current="page">
-        <svg class="bottom-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-        </svg>
-        <span class="bottom-nav__label">Discover</span>
-      </a>
-    </nav>
 
     <script src="js/main.js"></script>
   </body>

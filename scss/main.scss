@@ -1,4 +1,3 @@
-// ── TOKENS ────────────────────────────────────────────────
 $accent:       #E8552A;
 $dark:         #1a1a1a;
 $muted:        #999;
@@ -7,19 +6,18 @@ $bg:           #fcedd6;
 $font-display: 'Koto', Georgia, serif;
 $font-body:    'DM Sans', sans-serif;
 
-$bp-mobile:    767px;
+$bp-mobile:    770px;
 
-// ── RESET ─────────────────────────────────────────────────
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: $font-body;
   background: $bg;
   color: $dark;
-  -webkit-font-smoothing: antialiased;
+
 }
 
-// ── ACCESSIBILITY ─────────────────────────────────────────
 .sr-only {
   position: absolute;
   width: 1px;
@@ -38,7 +36,6 @@ body {
   border-radius: 2px;
 }
 
-// ── NAVBAR ────────────────────────────────────────────────
 .navbar {
   display: flex;
   align-items: center;
@@ -62,7 +59,6 @@ body {
       font-size: 1.6rem;
       font-weight: 700;
       color: $dark;
-      letter-spacing: -0.01em;
       line-height: 1;
 
       .logo-dot { color: $accent; }
@@ -74,7 +70,6 @@ body {
       font-weight: 300;
       color: $muted;
       letter-spacing: 0.06em;
-      text-transform: lowercase;
     }
   }
 
@@ -92,264 +87,15 @@ body {
       font-weight: 400;
       color: $dark;
       text-decoration: none;
-      position: relative;
-      padding-bottom: 2px;
       transition: color 0.2s ease;
 
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background: $accent;
-        transition: width 0.25s ease;
-      }
+      &:hover { color: $accent; }
 
-      &:hover {
-        color: $accent;
-        &::after { width: 100%; }
-      }
-
-      &--active {
-        color: $accent;
-        &::after { width: 100%; }
-      }
-
-      &--signin {
-        font-weight: 300;
-        color: $muted;
-        &::after { display: none; }
-        &:hover { color: $dark; }
-        &.nav-link--active { color: $dark; }
-      }
+      &--active { color: $accent; }
     }
   }
-
-  &__mobile-actions {
-    display: none;
-    align-items: center;
-    gap: 0.75rem;
-  }
 }
 
-.icon-btn {
-  all: unset;
-  cursor: pointer;
-  color: $dark;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.25rem;
-  transition: color 0.2s ease;
-
-  &:hover { color: $accent; }
-}
-
-// ── TICKER ────────────────────────────────────────────────
-@keyframes ticker-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-.ticker {
-  overflow: hidden;
-  border-top: 1px dashed rgba($dark, 0.2);
-  border-bottom: 1px dashed rgba($dark, 0.2);
-  padding: 0.55rem 0;
-  background: #f1b761;
-
-  &__track {
-    display: flex;
-    width: max-content;
-    animation: ticker-scroll 38s linear infinite;
-    &:hover { animation-play-state: paused; }
-  }
-
-  &__content {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding-right: 0.75rem;
-    white-space: nowrap;
-  }
-
-  &__item {
-    font-family: $font-body;
-    font-size: 0.72rem;
-    font-weight: 300;
-    color: $dark;
-    letter-spacing: 0.01em;
-  }
-
-  &__label {
-    font-weight: 500;
-    font-size: 0.68rem;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: $accent;
-  }
-
-  &__sep {
-    color: rgba($dark, 0.3);
-    font-size: 0.65rem;
-  }
-}
-
-// ── DATE HERO (mobile only, hidden by default) ────────────
-.date-hero {
-  display: none;
-  padding: 1.5rem;
-  justify-content: space-between;
-  align-items: flex-end;
-  border-bottom: 1px dashed rgba($dark, 0.1);
-
-  &__left {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  &__day {
-    font-family: $font-body;
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    color: $muted;
-    text-transform: uppercase;
-  }
-
-  &__number {
-    font-family: $font-display;
-    font-size: 5rem;
-    font-weight: 700;
-    color: $dark;
-    line-height: 1;
-  }
-
-  &__info {
-    font-family: $font-body;
-    font-size: 0.72rem;
-    font-weight: 300;
-    color: $muted;
-    letter-spacing: 0.05em;
-  }
-
-  &__right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.15rem;
-    padding-bottom: 0.25rem;
-  }
-
-  &__label {
-    font-family: $font-body;
-    font-size: 0.6rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    color: $muted;
-    text-transform: uppercase;
-  }
-
-  &__count {
-    font-family: $font-display;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: $dark;
-  }
-
-  &__sub {
-    font-family: $font-body;
-    font-size: 0.68rem;
-    font-weight: 300;
-    color: $muted;
-  }
-}
-
-// ── WEEK STRIP ────────────────────────────────────────────
-.week-strip {
-  border-bottom: 1px dashed rgba($dark, 0.15);
-  padding: 0 2.5rem;
-  background: $bg;
-
-  &__days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-  }
-}
-
-.week-day {
-  all: unset;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2rem;
-  padding: 1.1rem 0.5rem;
-  position: relative;
-  transition: opacity 0.2s ease;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: $accent;
-    transition: width 0.25s ease;
-    border-radius: 1px;
-  }
-
-  &:hover::after,
-  &--active::after { width: 2rem; }
-
-  &__label {
-    font-family: $font-body;
-    font-size: 0.6rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: $muted;
-    transition: color 0.2s ease;
-  }
-
-  &__number {
-    font-family: $font-display;
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 1;
-    color: rgba($dark, 0.25);
-    transition: color 0.2s ease;
-  }
-
-  &__events {
-    font-family: $font-body;
-    font-size: 0.62rem;
-    font-weight: 300;
-    color: $muted;
-    transition: color 0.2s ease;
-  }
-
-  &:hover {
-    .week-day__number { color: $dark; }
-    .week-day__label  { color: $dark; }
-  }
-
-  &--active {
-    .week-day__number {
-      color: $accent;
-      font-weight: 700;
-    }
-    .week-day__label  { color: $accent; }
-    .week-day__events { color: $dark; font-weight: 400; }
-  }
-}
-
-// ── AGENDA (homepage main layout) ─────────────────────────
 .agenda {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -361,35 +107,15 @@ body {
     border-right: 1px dashed rgba($dark, 0.15);
   }
 
-  &__header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-  }
-
-  &__date {
+  &__title {
     font-family: $font-display;
     font-size: 1.9rem;
     font-weight: 600;
     color: $dark;
-    letter-spacing: -0.01em;
-  }
-
-  &__hint {
-    font-family: $font-body;
-    font-size: 0.65rem;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    color: $muted;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: color 0.2s ease;
-    &:hover { color: $dark; }
+    margin-bottom: 1.5rem;
   }
 }
 
-// ── EVENT LIST ────────────────────────────────────────────
 .event-list {
   list-style: none;
   display: flex;
@@ -399,11 +125,9 @@ body {
 .event-row {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
   padding: 1.1rem 0;
   border-bottom: 1px solid rgba($dark, 0.07);
   cursor: pointer;
-  transition: background 0.15s ease;
 
   &:first-child { border-top: 1px solid rgba($dark, 0.07); }
 
@@ -418,7 +142,6 @@ body {
     font-weight: 300;
     color: $muted;
     min-width: 3rem;
-    letter-spacing: 0.02em;
   }
 
   &__info { flex: 1; }
@@ -438,30 +161,12 @@ body {
     font-weight: 300;
     color: $muted;
     margin-top: 0.15rem;
-    letter-spacing: 0.01em;
   }
 
   &__actions {
     display: flex;
     align-items: center;
     gap: 1rem;
-  }
-
-  &__price {
-    font-family: $font-body;
-    font-size: 0.72rem;
-    font-weight: 400;
-    color: $dark;
-    border: 1px solid rgba($dark, 0.3);
-    border-radius: 50px;
-    padding: 0.3rem 0.75rem;
-    white-space: nowrap;
-    transition: border-color 0.2s ease;
-
-    &--free {
-      color: $accent;
-      border-color: $accent;
-    }
   }
 
   &__arrow {
@@ -481,7 +186,6 @@ body {
   }
 }
 
-// ── FILTER PANEL ──────────────────────────────────────────
 .filter-panel {
   padding: 2rem 1.75rem;
   display: flex;
@@ -540,7 +244,6 @@ body {
   }
 }
 
-// ── SITE FOOTER ───────────────────────────────────────────
 .site-footer {
   padding: 1.5rem 2.5rem;
   border-top: 1px dashed rgba($dark, 0.1);
@@ -559,52 +262,7 @@ body {
   }
 }
 
-// ── BOTTOM NAV (mobile only, hidden by default) ───────────
-.bottom-nav {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: $bg;
-  border-top: 1px solid rgba($dark, 0.1);
-  padding: 0.5rem 0;
-  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
-  z-index: 200;
-
-  &__item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.2rem;
-    text-decoration: none;
-    color: $muted;
-    flex: 1;
-    padding: 0.3rem 0;
-    transition: color 0.2s ease;
-
-    &--active { color: $accent; }
-    &:hover { color: $dark; }
-  }
-
-  &__icon {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  &__label {
-    font-family: $font-body;
-    font-size: 0.6rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-  }
-}
-
-// ── DETAIL TOPBAR ─────────────────────────────────────────
 .detail-topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 0.9rem 2.5rem;
   border-bottom: 1px dashed rgba($dark, 0.12);
 
@@ -617,75 +275,12 @@ body {
     transition: color 0.2s ease;
     &:hover { color: $accent; }
   }
-
-  &__actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-family: $font-body;
-    font-size: 0.68rem;
-    font-weight: 300;
-    color: $muted;
-
-    span { opacity: 0.4; }
-  }
-
-  &__btn {
-    all: unset;
-    cursor: pointer;
-    font-family: $font-body;
-    font-size: 0.68rem;
-    font-weight: 300;
-    letter-spacing: 0.06em;
-    color: $muted;
-    transition: color 0.2s ease;
-    &:hover { color: $dark; }
-  }
 }
 
-// ── DETAIL PAGE LAYOUT ────────────────────────────────────
 .detail {
-  &__grid {
-    display: grid;
-    grid-template-columns: 1fr 1.6fr 1.2fr;
-    min-height: calc(100vh - 180px);
-  }
-
-  &__col {
-    padding: 2.5rem 2.5rem;
-
-    & + & { border-left: 1px dashed rgba($dark, 0.12); }
-  }
-
-  &__section {
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px dashed rgba($dark, 0.1);
-
-    &:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-    }
-  }
-
-  &__section-label {
-    display: block;
-    font-family: $font-body;
-    font-size: 0.6rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: $muted;
-    margin-bottom: 1.25rem;
-  }
-
-  &__text {
-    font-family: $font-body;
-    font-size: 0.85rem;
-    font-weight: 300;
-    color: $dark;
-    line-height: 1.7;
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
 
   &__hero {
     width: 100%;
@@ -696,385 +291,54 @@ body {
     margin-bottom: 2rem;
     background: rgba($dark, 0.06);
   }
-}
 
-// ── TICKET CARD (desktop left col) ────────────────────────
-.ticket {
-  border: 1px dashed rgba($dark, 0.35);
-  padding: 2rem;
-
-  &__label {
-    display: block;
-    font-family: $font-body;
-    font-size: 0.58rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    text-align: center;
-    color: $muted;
-    margin-bottom: 1.5rem;
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
   &__title {
     font-family: $font-display;
     font-size: 2.4rem;
     font-weight: 700;
-    font-style: italic;
     color: $dark;
-    line-height: 1.05;
-    margin-bottom: 0.5rem;
+    line-height: 1.1;
   }
 
-  &__category {
+  &__lieu {
     font-family: $font-body;
-    font-size: 0.62rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 400;
     color: $muted;
-    margin-bottom: 1.75rem;
-    padding-bottom: 1.75rem;
-    border-bottom: 1px dashed rgba($dark, 0.18);
   }
 
-  &__meta {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.55rem 1.25rem;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px dashed rgba($dark, 0.18);
-
-    dt {
-      font-family: $font-body;
-      font-size: 0.7rem;
-      font-weight: 400;
-      color: $muted;
-    }
-
-    dd {
-      font-family: $font-body;
-      font-size: 0.7rem;
-      font-weight: 300;
-      color: $dark;
-    }
-  }
-
-  &__price {
-    font-family: $font-display;
-    font-size: 3rem;
-    font-weight: 600;
-    color: $dark;
-    text-align: center;
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.02em;
-  }
-
-  &__cta {
-    display: block;
-    text-align: center;
-    font-family: $font-body;
-    font-size: 0.82rem;
-    font-weight: 300;
-    color: $dark;
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    transition: color 0.2s ease;
-    &:hover { color: $accent; }
-  }
-}
-
-// ── LINEUP ────────────────────────────────────────────────
-.lineup {
-  list-style: none;
-
-  li {
+  &__date {
     font-family: $font-body;
     font-size: 0.85rem;
     font-weight: 300;
-    color: $dark;
-    padding: 0.8rem 0;
-    border-bottom: 1px dashed rgba($dark, 0.08);
-    letter-spacing: 0.01em;
-
-    &:first-child { border-top: 1px dashed rgba($dark, 0.08); }
-  }
-}
-
-
-// ── VENUE ─────────────────────────────────────────────────
-.venue-map {
-  width: 100%;
-  height: 280px;
-  border-radius: 4px;
-  overflow: hidden;
-  background: rgba($dark, 0.04);
-}
-
-.venue-name {
-  font-family: $font-display;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: $dark;
-  margin-bottom: 0.3rem;
-}
-
-.venue-address {
-  font-family: $font-body;
-  font-size: 0.72rem;
-  font-weight: 300;
-  color: $muted;
-  line-height: 1.5;
-}
-
-// ── SIMILAR EVENTS ────────────────────────────────────────
-.similar-list {
-  list-style: none;
-
-  li {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    padding: 0.85rem 0;
-    border-bottom: 1px dashed rgba($dark, 0.1);
-
-    &:first-child { border-top: 1px dashed rgba($dark, 0.1); }
-  }
-}
-
-.similar-tag {
-  font-family: $font-body;
-  font-size: 0.52rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: $muted;
-  border: 1px dashed rgba($dark, 0.25);
-  padding: 0.35rem 0.45rem;
-  min-width: 2.75rem;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.similar-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.similar-name {
-  font-family: $font-body;
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: $dark;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  &:hover { color: $accent; }
-}
-
-.similar-date {
-  font-family: $font-body;
-  font-size: 0.65rem;
-  font-weight: 300;
-  color: $muted;
-}
-
-// ── DETAIL TABS (mobile only, hidden by default) ──────────
-.detail-tabs {
-  display: none;
-  border-bottom: 1px solid rgba($dark, 0.1);
-  padding: 0 1.5rem;
-}
-
-.detail-tab {
-  all: unset;
-  cursor: pointer;
-  font-family: $font-body;
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: $muted;
-  padding: 0.9rem 0.85rem;
-  position: relative;
-  flex: 1;
-  text-align: center;
-  transition: color 0.2s ease;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: $accent;
-    transform: scaleX(0);
-    transition: transform 0.2s ease;
-  }
-
-  &--active {
-    color: $accent;
-    &::after { transform: scaleX(1); }
-  }
-}
-
-// ── MOBILE TICKET (hidden on desktop) ─────────────────────
-.mobile-ticket {
-  display: none;
-  border: 1px dashed rgba($dark, 0.3);
-  margin: 1.5rem;
-
-  &__header {
-    text-align: center;
-    padding: 0.85rem 1rem;
-    border-bottom: 1px dashed rgba($dark, 0.18);
-    font-family: $font-body;
-    font-size: 0.58rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
     color: $muted;
   }
 
-  &__title {
-    font-family: $font-display;
-    font-size: 1.9rem;
-    font-style: italic;
-    font-weight: 700;
+  &__description {
+    font-family: $font-body;
+    font-size: 0.9rem;
+    font-weight: 300;
     color: $dark;
-    padding: 1rem 1.25rem;
-    border-bottom: 1px dashed rgba($dark, 0.18);
-    line-height: 1.1;
-
-    .subtitle {
-      display: block;
-      font-family: $font-body;
-      font-style: normal;
-      font-size: 0.6rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: $muted;
-      margin-bottom: 0.4rem;
-    }
-  }
-
-  &__meta {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-bottom: 1px dashed rgba($dark, 0.18);
-
-    > div {
-      padding: 0.85rem 1rem;
-
-      &:not(:last-child) {
-        border-right: 1px dashed rgba($dark, 0.18);
-      }
-
-      .meta-label {
-        display: block;
-        font-family: $font-body;
-        font-size: 0.52rem;
-        font-weight: 500;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: $muted;
-        margin-bottom: 0.3rem;
-      }
-
-      .meta-value {
-        font-family: $font-body;
-        font-size: 0.9rem;
-        font-weight: 400;
-        color: $dark;
-      }
-    }
-  }
-
-  &__price {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.85rem 1.25rem;
-
-    .price-label {
-      font-family: $font-body;
-      font-size: 0.58rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: $muted;
-    }
-
-    .price-value {
-      font-family: $font-display;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: $dark;
-    }
+    line-height: 1.7;
+    margin-top: 0.5rem;
   }
 }
 
-
-// ── WEEK STRIP: always scrollable so it never overflows ───
-.week-strip {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-
-  &__days {
-    min-width: max-content;
-  }
-}
-
-// ── TABLET (768px – 1024px) ───────────────────────────────
-@media (max-width: 1024px) {
-
-  // Less padding everywhere
-  .navbar       { padding: 1rem 1.5rem; }
-  .week-strip   { padding: 0 1.5rem; }
-
-  .agenda {
-    &__content { padding: 1.5rem 1.5rem; }
-  }
-
-  // Detail grid: drop to 2 columns (ticket | content+sidebar stacked)
-  .detail {
-    &__grid {
-      grid-template-columns: 1fr 1.5fr;
-    }
-
-    // Sidebar goes below main on tablet
-    &__col--sidebar {
-      grid-column: 2;
-    }
-
-    &__col { padding: 1.75rem 1.5rem; }
-  }
-
-  .detail-topbar { padding: 0.85rem 1.5rem; }
-}
-
-// ── MOBILE (up to 767px) ──────────────────────────────────
 @media (max-width: $bp-mobile) {
 
-  // Navbar
   .navbar {
     padding: 0.85rem 1.25rem;
-
-    &__nav            { display: none; }
-    &__mobile-actions { display: flex; }
 
     .logo-tagline { display: none; }
     .logo-name    { font-size: 1.3rem; }
   }
 
-  // Show mobile date hero, hide week strip
-  .date-hero  { display: flex; }
-  .week-strip { display: none; }
-
-  // Single column agenda
   .agenda {
     grid-template-columns: 1fr;
 
@@ -1083,13 +347,11 @@ body {
       border-right: none;
     }
 
-    &__date { font-size: 1.4rem; }
-    &__hint { display: none; }
+    &__title { font-size: 1.4rem; }
   }
 
   .filter-panel { display: none; }
 
-  // Smaller event rows
   .event-row {
     gap: 0.85rem;
 
@@ -1097,54 +359,13 @@ body {
     &__time { min-width: 2.5rem; }
   }
 
-  // Footer
   .site-footer { padding: 1rem 1.25rem; }
 
-  // Show bottom nav
-  .bottom-nav { display: flex; }
+  .detail-topbar { padding: 0.85rem 1.25rem; }
 
-  body { padding-bottom: 4.5rem; }
-
-  // Detail topbar
-  .detail-topbar {
-    padding: 0.85rem 1.25rem;
-
-    &__actions { display: none; }
-  }
-
-  // Detail page: show mobile layout
-  .mobile-ticket { display: block; }
-  .detail-tabs   { display: flex; }
-  .booking-bar   { display: flex; }
-
-  // Single column detail grid
   .detail {
-    &__grid {
-      grid-template-columns: 1fr;
-    }
+    padding: 1.25rem;
 
-    &__col {
-      padding: 1.25rem;
-
-      &--ticket { display: none; }
-
-      & + & {
-        border-left: none;
-        border-top: 1px dashed rgba($dark, 0.1);
-      }
-    }
-
-    padding-bottom: 8rem;
+    &__title { font-size: 1.75rem; }
   }
-}
-
-// ── DESKTOP (768px and up) ────────────────────────────────
-@media (min-width: #{$bp-mobile + 1px}) {
-  // All detail panels always visible — no tab hiding
-  .detail__col .detail__section { display: block !important; }
-
-  .mobile-ticket { display: none !important; }
-  .detail-tabs   { display: none !important; }
-  .booking-bar   { display: none !important; }
-  .bottom-nav    { display: none !important; }
 }
