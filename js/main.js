@@ -128,6 +128,7 @@ async function chargerEvenements() {
 
     afficherEvenements(tousLesEvenements);
     construireFiltres(tousLesEvenements);
+    initAutocomplete();
 
   } catch (erreur) {
     console.error('Erreur de chargement :', erreur);
@@ -137,5 +138,144 @@ async function chargerEvenements() {
     }
   }
 }
+
+
+function debounce(fn, delai) {
+  let timer;
+  return function(...args) {
+    clearTimeout(timer);
+    timer = setTimeout(function() { fn(...args); }, delai);
+  };
+}
+
+function rechercherDansTousLesEvenements(query) {
+  const q = query.toLowerCase().trim();
+  return tousLesEvenements.filter(function(ev) {
+    const titre = ev.title && ev.title.fr ? ev.title.fr.toLowerCase() : '';
+    const lieu  = ev.location && ev.location.name ? ev.location.name.toLowerCase() : '';
+    const ville = ev.location && ev.location.city ? ev.location.city.toLowerCase() : '';
+    return titre.includes(q) || lieu.includes(q) || ville.includes(q);
+  }).slice(0, 5);
+}
+
+function fermerSuggestions(liste, input) {
+  liste.hidden = true;
+  input.setAttribute('aria-expanded', 'false');
+}
+
+function afficherSuggestions(evenements, liste, input) {
+  liste.innerHTML = '';
+
+  if (evenements.length === 0) {
+    fermerSuggestions(liste, input);
+    return;
+  }
+
+  evenements.forEach(function(ev) {
+    const titre = ev.title && ev.title.fr ? ev.title.fr : 'Événement';
+    const ville = ev.location && ev.location.city ? ev.location.city : '';
+
+    const li = document.createElement('li');
+    li.setAttribute('role', 'option');
+    li.setAttribute('tabindex', '-1');
+
+    const spanTitre = document.createElement('span');
+    spanTitre.textContent = titre;
+
+    const spanVille = document.createElement('small');
+    spanVille.textContent = ville;
+
+    li.appendChild(spanTitre);
+    li.appendChild(spanVille);
+
+    li.addEventListener('click', function() {
+      input.value = titre;
+      fermerSuggestions(liste, input);
+
+      window.location.href = 'event-detail.html?id=' + ev.uid;
+    });
+
+    liste.appendChild(li);
+  });
+
+  liste.hidden = false;
+  input.setAttribute('aria-expanded', 'true');
+}
+
+function gererClavier(e, liste, input) {
+  const items = [...liste.querySelectorAll('[role="option"]')];
+  const indexActuel = items.indexOf(document.activeElement);
+
+  switch (e.key) {
+    case 'ArrowDown':
+      e.preventDefault();
+      if (indexActuel < items.length - 1) {
+        items[indexActuel + 1].focus();
+      } else {
+        items[0] && items[0].focus();
+      }
+      break;
+
+    case 'ArrowUp':
+      e.preventDefault();
+      if (indexActuel > 0) {
+        items[indexActuel - 1].focus();
+      } else {
+        input.focus();
+      }
+      break;
+
+    case 'Escape':
+      fermerSuggestions(liste, input);
+      input.focus();
+
+      afficherEvenements(tousLesEvenements);
+      break;
+
+    case 'Enter':
+      if (document.activeElement !== input) {
+        document.activeElement.click();
+      }
+      break;
+  }
+}
+
+function initAutocomplete() {
+  const input = document.getElementById('search-events');
+  const liste = document.getElementById('search-suggestion');
+
+  if (!input || !liste) return;
+
+  const rechercheDebounce = debounce(function(query) {
+    if (query.length < 2) {
+      fermerSuggestions(liste, input);
+      afficherEvenements(tousLesEvenements);
+      return;
+    }
+    const resultats = rechercherDansTousLesEvenements(query);
+    afficherSuggestions(resultats, liste, input);
+  }, 300);
+
+  input.addEventListener('input', function(e) {
+    rechercheDebounce(e.target.value);
+  });
+
+  input.addEventListener('keydown', function(e) {
+    gererClavier(e, liste, input);
+  });
+
+  liste.addEventListener('keydown', function(e) {
+    gererClavier(e, liste, input);
+  });
+
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-container')) {
+      fermerSuggestions(liste, input);
+    }
+  });
+}
+
+const chargerEvenementsOriginal = chargerEvenements;
 
 chargerEvenements();
